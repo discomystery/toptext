@@ -1,4 +1,4 @@
-// Quick Meme: editor core (state changes, history, canvas interaction, import/export).
+// Toptext: editor core (state changes, history, canvas interaction, import/export).
 import {
   S, ui, assets, originals, mk, cloneCanvas, newId, IW, IH,
   TEXT_DEFAULTS, TEXT_STYLE_KEYS, BUILTIN_PRESETS, RATIOS, defaultCaption,
@@ -761,7 +761,7 @@ export async function download() {
   const blob = await new Promise(r => renderToCanvas().toBlob(r, 'image/png'));
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = `quickmeme-${stamp()}.png`;
+  a.download = `toptext-${stamp()}.png`;
   a.click();
   setTimeout(() => URL.revokeObjectURL(a.href), 10000);
   toast('Downloaded PNG');
@@ -857,10 +857,10 @@ export async function applyTemplate(t, { fit = true } = {}) {
 }
 
 export async function exportBackup() {
-  const data = { app: 'quick-meme', version: 1, exported: new Date().toISOString(), templates: await getTemplates(), presets: userPresets };
+  const data = { app: 'toptext', version: 1, exported: new Date().toISOString(), templates: await getTemplates(), presets: userPresets };
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([JSON.stringify(data)], { type: 'application/json' }));
-  a.download = `quickmeme-templates-${stamp()}.json`;
+  a.download = `toptext-templates-${stamp()}.json`;
   a.click();
   setTimeout(() => URL.revokeObjectURL(a.href), 10000);
 }
@@ -868,7 +868,7 @@ export async function exportBackup() {
 async function importBackup(file) {
   try {
     const data = JSON.parse(await file.text());
-    if (data.app !== 'quick-meme') throw new Error('Not a Quick Meme backup file');
+    if (data.app !== 'toptext' && data.app !== 'quick-meme') throw new Error('Not a Toptext backup file');
     const list = await getTemplates();
     const have = new Set(list.map(t => t.id));
     const added = (data.templates || []).filter(t => !have.has(t.id));

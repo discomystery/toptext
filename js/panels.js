@@ -144,7 +144,7 @@ export function renderPanel() {
 
   if (!S.base) {
     if (ui.mode === 'templates') templatesPanel();
-    else put(head('Quick Meme'), h('p', {}, 'Open, drop or paste an image to get started, or start from a blank canvas.'), shortcutsSection());
+    else put(head('Toptext'), h('p', {}, 'Open, drop or paste an image to get started, or start from a blank canvas.'), shortcutsSection());
     return;
   }
   if (ui.brush) brushPanel();

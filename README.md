@@ -1,4 +1,4 @@
-# Quick Meme
+# Toptext
 
 A fast, private image editor for memes and social posts. It runs entirely in your browser: images are never uploaded anywhere.
 

@@ -1,6 +1,6 @@
 // Tiny IndexedDB key/value store for templates, presets and uploaded fonts.
 // Everything stays in this browser; nothing is uploaded.
-const DB_NAME = 'quick-meme';
+const DB_NAME = 'quick-meme'; // original name, kept so existing saved templates still load
 const STORE = 'kv';
 let dbPromise;
 
